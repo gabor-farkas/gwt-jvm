@@ -1,0 +1,77 @@
+<project name="gwt-jvm" default="compile">
+  <path id="dependancies">
+    <fileset dir="lib">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <target name="clean">
+    <delete dir="build" />
+  </target>
+
+  <target name="examplemodule-java">
+    <mkdir dir="build/examplemodule/classes" />
+    <javac srcdir="examplemodule" destdir="build/examplemodule/classes">
+      <classpath refid="dependancies" />
+    </javac>
+
+    <jar destfile="examplemodule-gwt.jar">
+      <fileset dir="build/examplemodule/classes" />
+      <fileset dir="examplemodule" />
+    </jar>
+  </target>
+
+  <target name="examplemodule">
+    <mkdir dir="build/examplemodule" />
+  </target>
+
+  <target name="compile">
+    <mkdir dir="build" />
+    <mkdir dir="build/classes" />
+
+    <javac srcdir="src" destdir="build/classes" debug="on">
+      <classpath refid="dependancies" />
+    </javac>
+
+    <copy file="src/com/google/gwt/jvm/OverlayTypes.properties" todir="build/classes/com/google/gwt/jvm" />
+    <jar destfile="build/gwt-jvm.jar">
+      <fileset dir="build/classes" />
+    </jar>
+  </target>
+
+  <target name="compile-tests" depends="compile">
+    <mkdir dir="build/test-classes" />
+
+    <javac srcdir="tests" destdir="build/test-classes" debug="on">
+      <classpath refid="dependancies" />
+      <classpath>
+        <pathelement path="build/classes" />
+      </classpath>
+    </javac>
+    <copy file="tests/com/google/gwt/jvm/AdditionalOverlayTypes.properties" todir="build/test-classes/" />
+    <jar destfile="build/gwt-jvm-tests.jar">
+      <fileset dir="build/test-classes" />
+    </jar>
+  </target>
+
+  <target name="test" depends="compile-tests">
+   <junit fork="on" forkmode="once" includeantruntime="true" printsummary="on" showoutput="true">
+      <classpath refid="dependancies" />
+      <classpath>
+        <pathelement location="build/gwt-jvm.jar" />
+        <pathelement location="build/gwt-jvm-tests.jar" />
+      </classpath>
+ 
+      <jvmarg value="-Djava.system.class.loader=com.google.gwt.jvm.GwtClassLoader" />
+      <jvmarg value="-Dcom.google.gwt.jvm.additionalOverlayTypes=AdditionalOverlayTypes.properties" />
+
+      <formatter type="xml" />
+      <batchtest>
+        <fileset dir="tests">
+          <include name="**/*Test.java" />
+        </fileset>
+      </batchtest>
+      <test name="com.google.gwt.jvm.RootPanelTest" />
+    </junit>
+  </target>
+</project>

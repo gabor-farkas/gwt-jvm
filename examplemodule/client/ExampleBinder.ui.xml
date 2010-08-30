@@ -1,0 +1,10 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:VerticalPanel>
+      <g:Label ui:field="greeting"/>
+      <g:Label>What is your favorite color?</g:Label>
+      <g:CheckBox ui:field="red" formValue="red">Red</g:CheckBox>
+      <g:CheckBox ui:field="white" formValue="white">White</g:CheckBox>
+      <g:CheckBox ui:field="blue" formValue="blue">Blue</g:CheckBox>
+    </g:VerticalPanel>
+</ui:UiBinder>
