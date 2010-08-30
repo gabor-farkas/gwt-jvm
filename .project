@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>gwt-jvm</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>build</name>
+			<type>2</type>
+			<location>/home/gentle/src/gwt-jvm/build</location>
+		</link>
+		<link>
+			<name>build.xml</name>
+			<type>1</type>
+			<location>/home/gentle/src/gwt-jvm/build.xml</location>
+		</link>
+		<link>
+			<name>src</name>
+			<type>2</type>
+			<location>/home/gentle/src/gwt-jvm/src</location>
+		</link>
+		<link>
+			<name>tests</name>
+			<type>2</type>
+			<location>/home/gentle/src/gwt-jvm/tests</location>
+		</link>
+	</linkedResources>
+</projectDescription>
